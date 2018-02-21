@@ -9,7 +9,7 @@
   "private": false,
   "scripts": {
     "build": "tsc",
-    "serve-dev": "node public/example/index.js"
+    "example": "node public/example/index.js"
   },
   "devDependencies": {
     "@types/express": "^4.11.0",

@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { GET_METHODS_KEY } from './keys';
 import { Request, Response } from 'express';
-export function GetDecorator(enpoint: string) {
+export function GetDecorator(enpoint: string = '') {
 	return (
 		target: Object,
 		propertyKey: string,
