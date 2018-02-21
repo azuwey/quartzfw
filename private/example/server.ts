@@ -1,7 +1,7 @@
 import * as Path from 'path';
-import Application from './application';
+import Application from './application.module';
 
-import { ServerDecorator } from '..';
+import { ServerDecorator, AppDecorator } from '..';
 
 const domainKeyUrl = Path.resolve(__dirname, 'domain.key');
 const domainCrtUrl = Path.resolve(__dirname, 'domain.crt');
@@ -12,4 +12,4 @@ const domainCrtUrl = Path.resolve(__dirname, 'domain.crt');
 	domainCrtUrl,
 	forceToSSL: true
 })
-export default class Server { }
+export default class Server {}

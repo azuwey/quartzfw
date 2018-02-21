@@ -18,6 +18,7 @@ export function ModuleDecorator(config: ModuleDecoratorParam) {
 			config.controllers.forEach(target => {
 				Reflect.defineMetadata(APPLICATION_KEY, metaData, target);
 			});
+			new (<any>constructor);
 		}, 0)
 	}
 }
