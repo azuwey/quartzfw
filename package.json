@@ -7,6 +7,17 @@
   "author": "Azuwey",
   "license": "BSD-3-Clause",
   "private": false,
+  "keywords": [
+    "typescript",
+    "framework",
+    "socket-io",
+    "socket.io",
+    "express"
+  ],
+  "homepage": "https://github.com/azuwey/quartzfw",
+  "bugs": {
+    "url": "https://github.com/azuwey/quartzfw/issues"
+  },
   "scripts": {
     "build": "tsc",
     "example": "node public/example/index.js"
