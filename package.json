@@ -1,6 +1,7 @@
 {
   "name": "quartzfw",
-  "version": "0.0.1",
+  "displayName": "QuartzFW",
+  "version": "0.0.2",
   "description": "quartzfw",
   "main": "private/index.ts",
   "repository": "https://github.com/azuwey/quartzfw.git",
@@ -12,7 +13,11 @@
     "framework",
     "socket-io",
     "socket.io",
-    "express"
+    "express",
+    "nodejs",
+    "node-js",
+    "quartz",
+    "quartzfw"
   ],
   "homepage": "https://github.com/azuwey/quartzfw",
   "bugs": {
