@@ -2,8 +2,6 @@ import 'reflect-metadata';
 
 import { APPLICATION_KEY, METHODS_KEYS } from '../misc/keys';
 
-const DEFAULT_PORT: number = 80;
-
 export function ControllerDecorator(baseEndpoint: string = '') {
 	return (constructor: Function) => {
 		let timer = setInterval(() => {
@@ -22,12 +20,10 @@ export function ControllerDecorator(baseEndpoint: string = '') {
 				});
 				let baseUrl = (baseEndpoint === '' || baseEndpoint === '/')
 					? '' : `/${baseEndpoint}`;
-				events && events.forEach(event => {
-					event.method.toUpperCase() === 'PARAM'
+				events && events.forEach(event => event.method.toUpperCase() === 'PARAM'
 					? expressApp[event.method.toLowerCase()](event.endpoint, event.callback)
 					: expressApp[event.method.toLowerCase()](`${baseUrl}${event.endpoint}`
-						, event.callback);
-				});
+						, event.callback));
 			})();
 		}, 0);
 	}

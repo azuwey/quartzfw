@@ -4,12 +4,12 @@ import Application from './application.module';
 import { ServerDecorator, AppDecorator } from '..';
 
 const domainKeyUrl = Path.resolve(__dirname, 'domain.key');
-const domainCrtUrl = Path.resolve(__dirname, 'domain.crt');
+const domainCrtUrl = Path.resolve(__dirname, 'domain.cert');
 
 @ServerDecorator({
 	application: Application,
 	domainKeyUrl,
 	domainCrtUrl,
-	forceToSSL: true
+	forceToSSL: false
 })
 export default class Server {}

@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 
-import { ControllerDecorator, GetDecorator, ParamDecorator, PostDecorator, PutDecorator, DeleteDecorator } from '../..';
+import { ControllerDecorator, GetDecorator } from '../..';
 
 @ControllerDecorator('cats')
 export default class CatsGetController {

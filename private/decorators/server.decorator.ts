@@ -4,8 +4,9 @@ import * as Express from 'express';
 import { readFileSync } from 'fs';
 import * as Http from 'http';
 import * as Https from 'https';
+import * as SocketIO from 'socket.io';
 
-import { APPLICATION_KEY } from '../misc/keys';
+import { APPLICATION_KEY, SSL_CERTS_KEY, HTTPS_KEY, HTTP_KEY } from '../misc/keys';
 
 const DEFAULT_PORT: number = 80;
 const DEFAULT_SECURE_PORT: number = 443;
@@ -28,13 +29,17 @@ export function ServerDecorator(config: ServerDecoratorParam) {
 	let port = config.port ? config.port : DEFAULT_PORT;
 	let securePort = config.securePort ? config.securePort : DEFAULT_SECURE_PORT;
 	let forceToSSL = config.forceToSSL;
+	let httpServer: Http.Server;
 	if (config.domainKeyUrl && config.domainCrtUrl) {
 		let key = readFileSync(config.domainKeyUrl);
 		let cert = readFileSync(config.domainCrtUrl);
-		Http.createServer(app).listen(port, () =>
+		httpServer = Http.createServer(app).listen(port, () =>
 			console.log(`Server is listening in ${port} port`));
-		Https.createServer({ key, cert }, app).listen(securePort, () =>
+		let httpsServer = Https.createServer({ key, cert, rejectUnauthorized: false }, app).listen(securePort, () =>
 			console.log(`Secure server is listening in ${securePort} port`));
+		console.log(httpsServer)
+		Reflect.defineMetadata(HTTPS_KEY, httpsServer, config.application);
+		Reflect.defineMetadata(SSL_CERTS_KEY, { key, cert }, config.application);
 		forceToSSL && app.use((req, res, next) => {
 			let host: string = req.headers.host || '';
 			if (!/https/.test(req.protocol) && port !== DEFAULT_PORT) {
@@ -50,10 +55,11 @@ export function ServerDecorator(config: ServerDecoratorParam) {
 			}
 		});
 	} else {
-		app.listen(config.port, () =>
+		httpServer = Http.createServer(app).listen(config.port, () =>
 			console.log(`Server is listening in ${config.port} port`));
 	}
 	return function classDecorator<T extends { new(...args: any[]): {} }>(constructor: T) {
+		Reflect.defineMetadata(HTTP_KEY, httpServer, config.application);
 		Reflect.defineMetadata(APPLICATION_KEY, app, config.application);
 		return class extends constructor {
 			expressApp = app;
