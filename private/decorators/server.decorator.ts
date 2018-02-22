@@ -6,7 +6,7 @@ import * as Http from 'http';
 import * as Https from 'https';
 import * as SocketIO from 'socket.io';
 
-import { APPLICATION_KEY, SSL_CERTS_KEY, HTTPS_KEY, HTTP_KEY } from '../misc/keys';
+import { APPLICATION_KEY, HTTPS_KEY, HTTP_KEY } from '../misc/keys';
 
 const DEFAULT_PORT: number = 80;
 const DEFAULT_SECURE_PORT: number = 443;
@@ -37,9 +37,7 @@ export function ServerDecorator(config: ServerDecoratorParam) {
 			console.log(`Server is listening in ${port} port`));
 		let httpsServer = Https.createServer({ key, cert, rejectUnauthorized: false }, app).listen(securePort, () =>
 			console.log(`Secure server is listening in ${securePort} port`));
-		console.log(httpsServer)
 		Reflect.defineMetadata(HTTPS_KEY, httpsServer, config.application);
-		Reflect.defineMetadata(SSL_CERTS_KEY, { key, cert }, config.application);
 		forceToSSL && app.use((req, res, next) => {
 			let host: string = req.headers.host || '';
 			if (!/https/.test(req.protocol) && port !== DEFAULT_PORT) {
