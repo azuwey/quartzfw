@@ -1,4 +1,4 @@
-import { APPLICATION_KEY } from "./keys";
+import { APPLICATION_KEY } from '../misc/keys';
 
 export function AppDecorator(
 	target: Object, // The prototype of the class

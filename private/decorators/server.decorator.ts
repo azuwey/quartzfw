@@ -5,7 +5,7 @@ import { readFileSync } from 'fs';
 import * as Http from 'http';
 import * as Https from 'https';
 
-import { APPLICATION_KEY } from './keys';
+import { APPLICATION_KEY } from '../misc/keys';
 
 const DEFAULT_PORT: number = 80;
 const DEFAULT_SECURE_PORT: number = 443;

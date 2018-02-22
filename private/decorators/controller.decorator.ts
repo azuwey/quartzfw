@@ -1,10 +1,10 @@
 import 'reflect-metadata';
 
-import { GET_METHODS_KEY, APPLICATION_KEY } from './keys';
+import { APPLICATION_KEY, METHODS_KEYS } from '../misc/keys';
 
 const DEFAULT_PORT: number = 80;
 
-export function ControllerDecorator(baseEnpoint: string = '') {
+export function ControllerDecorator(baseEndpoint: string = '') {
 	return (constructor: Function) => {
 		let timer = setInterval(() => {
 			let keys = Reflect.getMetadataKeys(constructor);
@@ -12,16 +12,21 @@ export function ControllerDecorator(baseEnpoint: string = '') {
 				.getMetadata(APPLICATION_KEY, constructor);
 			(expressApp) && (() => {
 				clearInterval(timer);
-				let events = <Array<{
+				let events: Array<{
 					method: string,
-					enpoint: String,
+					endpoint: String,
 					callback: Function
-				}>>Reflect.getMetadata(GET_METHODS_KEY, constructor);
-				let baseUrl = (baseEnpoint === '' || baseEnpoint === '/')
-					? '' : `/${baseEnpoint}`;
-				events.forEach(event => {
-					expressApp[event.method.toLocaleLowerCase()](
-						`${baseUrl}${event.enpoint}`, event.callback);
+				}> = [];
+				Object.keys(METHODS_KEYS).forEach(key => {
+					events.push.apply(events, Reflect.getMetadata(METHODS_KEYS[key], constructor))
+				});
+				let baseUrl = (baseEndpoint === '' || baseEndpoint === '/')
+					? '' : `/${baseEndpoint}`;
+				events && events.forEach(event => {
+					event.method.toUpperCase() === 'PARAM'
+					? expressApp[event.method.toLowerCase()](event.endpoint, event.callback)
+					: expressApp[event.method.toLowerCase()](`${baseUrl}${event.endpoint}`
+						, event.callback);
 				});
 			})();
 		}, 0);

@@ -1,11 +1,13 @@
 import { ModuleDecorator, AppDecorator } from '../';
-import CatsController from './controllers/cats.controller';
+import CatsGetController from './controllers/catsget.controller';
+import CatsParamController from './controllers/catsparam.controller';
 import IndexController from './controllers/index.controller';
 import { Application, static as Static} from 'express';
 
 @ModuleDecorator({
 	controllers: [
-		CatsController,
+		CatsGetController,
+		CatsParamController,
 		IndexController
 	]
 })
