@@ -1,9 +1,9 @@
 import 'reflect-metadata';
+import feathersSocketIO from '@feathersjs/socketio';
 
 import { APPLICATION_KEY, HTTP_KEY, HTTPS_KEY } from '../misc/keys';
 import { Http2SecureServer } from 'http2';
 import * as WebSocket from 'ws';
-import * as SIO from 'socket.io';
 import * as Http from 'http';
 import * as Https from 'https';
 
@@ -21,15 +21,11 @@ export function ModuleDecorator(config: ModuleDecoratorParam) {
 			config.gateways && (() => {
 				let http: Http.Server = Reflect.getMetadata(HTTP_KEY, constructor);
 				let https: Https.Server = Reflect.getMetadata(HTTPS_KEY, constructor);
-				let socketServer = SIO();
-				socketServer.serveClient(false);
-				socketServer.attach(https);
-				socketServer.on('connection', (socket: SocketIO.Socket) => {
-					console.log('asd');
-				});
 				/*let wss = https
 					? new WebSocket.Server({ server: https })
 					: new WebSocket.Server({ server: http });
+				metaData.configure(feathersSocketIO(wss));*/
+				/*
 				console.log('wss');
 				wss.on('connection', (ws, req) => {
 					const ip = req.connection.remoteAddress;
