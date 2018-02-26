@@ -12,6 +12,7 @@ const domainCrtUrl = Path.resolve(__dirname, '../../../domain.crt');
 	domainKeyUrl,
 	domainCrtUrl,
 	domainCsrUrl,
-	forceToSSL: false
+	forceToSSL: true,
+	rejectUnauthorized: false
 })
 export default class Server {}

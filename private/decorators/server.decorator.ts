@@ -1,74 +1,73 @@
 import 'reflect-metadata';
 
-import feathersExpress from '@feathersjs/express';
-import feathers from '@feathersjs/feathers';
+import * as Express from 'express';
 import { readFileSync } from 'fs';
 import * as Http from 'http';
 import * as Https from 'https';
-import feathersSocketIO from '@feathersjs/socketio';
 
-import { APPLICATION_KEY, HTTPS_KEY, HTTP_KEY } from '../misc/keys';
+import { APPLICATION_KEY, HTTP_KEY, HTTPS_KEY } from '../misc/keys';
 
-const DEFAULT_PORT: number = 80;
-const DEFAULT_SECURE_PORT: number = 443;
-const FORCE_TO_SSL: boolean = false;
+const _DEFAULT_PORT: Readonly<number> = 80;
+const _DEFAULT_SECURE_PORT: Readonly<number> = 443;
 
-type ServerDecoratorParam = {
-	application: Function,
+export type ServerDecoratorParam = {
+	application: Readonly<Function>,
 	/** @default 80 */
-	port?: number,
+	port?: Readonly<number>,
 	/** @default 443 */
-	securePort?: number
+	securePort?: Readonly<number>
 	/** @default false */
-	forceToSSL?: boolean,
-	domainCsrUrl?: string
-	domainKeyUrl?: string,
-	domainCrtUrl?: string
+	forceToSSL?: Readonly<boolean>,
+	domainCsrUrl?: Readonly<string>
+	domainKeyUrl?: Readonly<string>,
+	domainCrtUrl?: Readonly<string>,
+	rejectUnauthorized?: Readonly<boolean>
 }
 
 export function ServerDecorator(config: ServerDecoratorParam) {
-	let app = feathersExpress(feathers());
-	let port = config.port ? config.port : DEFAULT_PORT;
-	let securePort = config.securePort ? config.securePort : DEFAULT_SECURE_PORT;
-	let forceToSSL = config.forceToSSL;
-	let httpServer: Http.Server;
-	
-	if (config.domainKeyUrl && config.domainCrtUrl && config.domainCsrUrl) {
-		let key = readFileSync(config.domainKeyUrl);
-		let cert = readFileSync(config.domainCrtUrl);
-		let ca = readFileSync(config.domainCsrUrl);
-		httpServer = Http.createServer(app).listen(port, () =>
-			console.log(`Server is listening in ${port} port`));
-		let httpsServer = Https.createServer({ key, cert, rejectUnauthorized: false }, app).listen(securePort, () =>
+	let app: Express.Application = Express();
+	let port: number = config.port ? config.port : _DEFAULT_PORT;
+	let securePort: number = config.securePort ? config.securePort : _DEFAULT_SECURE_PORT;
+	let forceToSSL: boolean = config.forceToSSL ? config.forceToSSL : false;
+	let rejectUnauthorized: boolean = config.rejectUnauthorized ? config.rejectUnauthorized : true;
+	let httpServer: Http.Server = Http.createServer(app).listen(port, () =>
+		console.log(`Server is listening in ${port} port`));
+	if (config.domainKeyUrl && config.domainCrtUrl) {
+		let key: Buffer = readFileSync(config.domainKeyUrl);
+		let cert: "" | Buffer | undefined = readFileSync(config.domainCrtUrl);
+		let ca: "" | Buffer | undefined = config.domainCsrUrl
+			&& readFileSync(config.domainCsrUrl);
+		let httpsServer = Https.createServer({
+			key, cert, ca, rejectUnauthorized
+		}, app).listen(securePort, () =>
 			console.log(`Secure server is listening in ${securePort} port`));
-		app.configure(feathersSocketIO(() => {
-			console.log('socket is started');
-		}))
-		app.setup(httpsServer);
+		forceToSSL && _forceToSSL(app, port, securePort);
 		Reflect.defineMetadata(HTTPS_KEY, httpsServer, config.application);
-		forceToSSL && app.use((req, res, next) => {
-			let host: string = req.headers.host || '';
-			if (!/https/.test(req.protocol) && port !== DEFAULT_PORT) {
-				host = `${host.replace(port.toString(), securePort.toString())}`;
-				return res.redirect(`https://${host}${req.url}`);
-			} else if (!/https/.test(req.protocol) && securePort !== DEFAULT_SECURE_PORT) {
-				host = `${host}:${securePort}`;
-				return res.redirect(`https://${host}${req.url}`);
-			} if (!/https/.test(req.protocol)) {
-				return res.redirect(`https://${req.headers.host}${req.url}`);
-			} else {
-				return next();
-			}
-		});
 	} else {
-		httpServer = Http.createServer(app).listen(config.port, () =>
-			console.log(`Server is listening in ${config.port} port`));
+		//Do nothing
 	}
 	return function classDecorator<T extends { new(...args: any[]): {} }>(constructor: T) {
 		Reflect.defineMetadata(HTTP_KEY, httpServer, config.application);
 		Reflect.defineMetadata(APPLICATION_KEY, app, config.application);
 		return class extends constructor {
-			expressApp = app;
+			public expressApp = app;
 		}
 	}
+}
+
+const _forceToSSL = (app: Express.Application, port: number, securePort: number) => {
+	app.use((req, res, next) => {
+		let host: string = req.headers.host || '';
+		if (!/https/.test(req.protocol) && port !== _DEFAULT_PORT) {
+			host = `${host.replace(port.toString(), securePort.toString())}`;
+			return res.redirect(`https://${host}${req.url}`);
+		} else if (!/https/.test(req.protocol) && securePort !== _DEFAULT_SECURE_PORT) {
+			host = `${host}:${securePort}`;
+			return res.redirect(`https://${host}${req.url}`);
+		} if (!/https/.test(req.protocol)) {
+			return res.redirect(`https://${req.headers.host}${req.url}`);
+		} else {
+			return next();
+		}
+	});
 }
