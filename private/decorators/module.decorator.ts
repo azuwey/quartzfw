@@ -24,12 +24,13 @@ export function ModuleDecorator(config: ModuleDecoratorParam) {
 					? new Ws.Server({ server: https })
 					: new Ws.Server({ server: http });
 				wss.on('connection', (socket, request) => {
-					socket.on('message', (data: Ws.Data) => {
+					socket.addListener('message', data => {
 						config.gateways && config.gateways.forEach((target) => {
 							let events = <Array<{
 								endpoint: String,
 								callback: Function
 							}>>Reflect.getMetadata(INCOME_SOCKET_KEY, target) || [];
+							
 							events.forEach(event => {
 								let serverDate = new Date();
 								console.log(
@@ -38,15 +39,9 @@ export function ModuleDecorator(config: ModuleDecoratorParam) {
 							});
 						});
 					});
-					/*socket.addListener('message', event => {
-						console.log('mess')
-					});*/
-					/*let timer = setInterval(() => {
-						let events = <Array<{
-							endpoint: String,
-							callback: Function
-						}>>Reflect.getMetadata(INCOME_SOCKET_KEY, constructor) || [];
-					}, 2);*/
+					socket.on('close', (code, reason) => {
+						socket.removeAllListeners();
+					});
 				});
 				
 				config.gateways.forEach((target) => {
