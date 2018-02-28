@@ -1,10 +1,9 @@
 import 'reflect-metadata';
 
-import { APPLICATION_KEY, SSL_CERTS_KEY, HTTP_KEY, HTTPS_KEY } from '../misc/keys';
-import { Http2SecureServer } from 'http2';
-import * as SocketIO from 'socket.io';
 import * as Http from 'http';
 import * as Https from 'https';
+
+import { APPLICATION_KEY, HTTP_KEY, HTTPS_KEY, SOCKET_SERVER_KEY, WsServerEventDispatcher } from '../misc';
 
 type ModuleDecoratorParam = {
 	controllers?: Array<Function>,
@@ -20,10 +19,15 @@ export function ModuleDecorator(config: ModuleDecoratorParam) {
 			config.gateways && (() => {
 				let http: Http.Server = Reflect.getMetadata(HTTP_KEY, constructor);
 				let https: Https.Server = Reflect.getMetadata(HTTPS_KEY, constructor);
-				//let socketio: SocketIO.Server = https ? SocketIO(https) : SocketIO(http);
-				let certs = Reflect.getMetadata(SSL_CERTS_KEY, constructor);
-				let socketio: SocketIO.Server = certs ? SocketIO(https, certs) : SocketIO(http);
-				
+				SOCKET_SERVER_KEY
+				let wssed: WsServerEventDispatcher = https
+					? WsServerEventDispatcher.GetInstance(https)
+					: WsServerEventDispatcher.GetInstance(http);
+				config.gateways.forEach((target) => {
+					Reflect.defineMetadata(SOCKET_SERVER_KEY, wssed, target);
+					Reflect.defineMetadata(APPLICATION_KEY, metaData, target);
+
+				});
 			})();
 			new (<any>constructor);
 		}, 0)

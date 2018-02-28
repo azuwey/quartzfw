@@ -1,8 +1,7 @@
 import 'reflect-metadata';
 
+import { METHODS_KEYS, Param } from '../misc';
 import { AddRequest } from './request.decorator';
-import { METHODS_KEYS } from '../misc/keys';
-import { Param } from '../misc/typedPropertyDescriptors';
 
 export function ParamDecorator(param: string = '') {
 	return (

@@ -1,8 +1,8 @@
 export const APPLICATION_KEY: string = 'applicationkey';
 export const HTTP_KEY: string = 'httpkey';
 export const HTTPS_KEY: string = 'httpskey';
-export const SOCKET_KEY: string = 'socketkey';
-export const SSL_CERTS_KEY: string = 'sslcertskey';
+export const SOCKET_SERVER_KEY: string = 'socketserverkey';
+export const INCOME_SOCKET_KEY: string = 'incomesocketkey';
 export const METHODS_KEYS = {
 	GET_METHODS_KEY: 'getmethodkey',
 	POST_METHODS_KEY: 'postmethodkey',

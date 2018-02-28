@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 
+import { Extended, METHODS_KEYS, Simple } from '../misc';
 import { AddRequest } from './request.decorator';
-import { METHODS_KEYS } from '../misc/keys';
-import { Extended, Simple } from '../misc/typedPropertyDescriptors';
+
 
 export function DeleteDecorator(endpoint: string = '') {
 	return (
