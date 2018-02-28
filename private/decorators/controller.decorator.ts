@@ -20,11 +20,12 @@ export function ControllerDecorator(baseEndpoint: string = '') {
 				});
 				let baseUrl = (baseEndpoint === '' || baseEndpoint === '/')
 					? '' : `/${baseEndpoint}`;
+				let _class = new (<any>constructor);
 				events && events.forEach(event => event.method.toUpperCase() === 'PARAM'
 					? expressApp[event.method.toLowerCase()](event.endpoint,
-						event.callback.bind(constructor.prototype))
+						event.callback.bind(_class))
 					: expressApp[event.method.toLowerCase()](`${baseUrl}${event.endpoint}`,
-						event.callback.bind(constructor.prototype)));
+						event.callback.bind(_class)));
 			})();
 		}, 0);
 	}

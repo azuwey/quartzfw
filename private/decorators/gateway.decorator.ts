@@ -17,7 +17,8 @@ export function GatewayDecorator(baseEndpoint: string = '') {
 					endpoint: string,
 					callback: SocketEventHandler
 				}>>Reflect.getMetadata(INCOME_SOCKET_KEY, constructor);
-				events.forEach(event => wssed.Add(event.endpoint, event.callback));
+				let _class = new (<any>constructor);
+				events.forEach(event => wssed.Add(event.endpoint, event.callback.bind(_class)));
 			})();
 		}, 0);
 	}
