@@ -6,6 +6,7 @@ import { ControllerDecorator, GetDecorator } from '../..';
 export default class IndexController {
 	@GetDecorator()
 	private test(req: Request, res: Response) {
-		res.send('hello world')
+		res.send('hello world');
+		console.log(this);
 	}
 }

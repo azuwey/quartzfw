@@ -44,7 +44,7 @@ export class WsServerEventDispatcher {
 
 	public Add(
 		eventName: string,
-		eventCallback: (socket: Ws, ...args: any[]) => void
+		eventCallback: SocketEventHandler,
 	): void {
 		if (!this._events.has(eventName)) {
 			this._events.set(eventName, eventCallback);

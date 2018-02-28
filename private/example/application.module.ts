@@ -13,26 +13,7 @@ import IndexGateway from './gateways/index.gateway';
 		IndexController
 	],
 	gateways: [
-		IndexGateway,
-		IndexGateway,
-		IndexGateway,
-		IndexGateway,
-		IndexGateway,
-		IndexGateway,IndexGateway,
-		IndexGateway,IndexGateway,IndexGateway,
-		IndexGateway,IndexGateway,
-		IndexGateway,
-		IndexGateway,
-		IndexGateway,
-		IndexGateway,IndexGateway,
-		IndexGateway,IndexGateway,IndexGateway,
-		IndexGateway,IndexGateway,
-		IndexGateway,
-		IndexGateway,
-		IndexGateway,
-		IndexGateway,IndexGateway,
-		IndexGateway,IndexGateway,IndexGateway,
-		IndexGateway,
+		IndexGateway
 	]
 })
 export default class ApplicationModule {

@@ -21,9 +21,10 @@ export function ControllerDecorator(baseEndpoint: string = '') {
 				let baseUrl = (baseEndpoint === '' || baseEndpoint === '/')
 					? '' : `/${baseEndpoint}`;
 				events && events.forEach(event => event.method.toUpperCase() === 'PARAM'
-					? expressApp[event.method.toLowerCase()](event.endpoint, event.callback)
-					: expressApp[event.method.toLowerCase()](`${baseUrl}${event.endpoint}`
-						, event.callback));
+					? expressApp[event.method.toLowerCase()](event.endpoint,
+						event.callback.bind(constructor.prototype))
+					: expressApp[event.method.toLowerCase()](`${baseUrl}${event.endpoint}`,
+						event.callback.bind(constructor.prototype)));
 			})();
 		}, 0);
 	}

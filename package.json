@@ -1,7 +1,7 @@
 {
   "name": "quartzfw",
   "displayName": "QuartzFW",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "quartzfw",
   "main": "private/index.ts",
   "repository": "https://github.com/azuwey/quartzfw.git",
@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "@types/express": "^4.11.0",
-    "@types/websocket": "^0.0.37",
     "@types/ws": "^4.0.1",
     "reflect-metadata": "^0.1.12",
     "ts-node": "^4.1.0",
@@ -38,7 +37,6 @@
   },
   "dependencies": {
     "express": "^4.16.2",
-    "websocket": "^1.0.25",
     "ws": "^4.1.0"
   }
 }

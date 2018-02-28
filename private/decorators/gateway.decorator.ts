@@ -19,6 +19,6 @@ export function GatewayDecorator(baseEndpoint: string = '') {
 				}>>Reflect.getMetadata(INCOME_SOCKET_KEY, constructor);
 				events.forEach(event => wssed.Add(event.endpoint, event.callback));
 			})();
-		}, 2);
+		}, 0);
 	}
 }

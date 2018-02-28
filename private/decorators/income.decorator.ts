@@ -14,7 +14,7 @@ export function IncomeDecorator(eventEndPoint: string) {
 				callback: SocketEventHandler
 			}>>Reflect.getMetadata(INCOME_SOCKET_KEY, target.constructor) || [];
 			if (events.filter(event => event.endpoint === eventEndPoint).length === 0) {
-				let callback = descriptor.value!.bind(target.constructor);
+				let callback = descriptor.value.bind(target.constructor.prototype);
 				events.push({
 					endpoint: eventEndPoint,
 					callback: callback
