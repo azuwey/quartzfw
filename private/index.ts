@@ -8,3 +8,4 @@ export * from './decorators/post.decorator';
 export * from './decorators/put.decorator';
 export * from './decorators/server.decorator';
 export * from './decorators/income.decorator';
+export * from './decorators/gateway.decorator';

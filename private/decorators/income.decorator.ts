@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 
-import { INCOME_SOCKET_KEY } from '../misc/keys';
-import { Income } from '../misc/typedPropertyDescriptors';
+import { Income, INCOME_SOCKET_KEY, SocketEventHandler } from '../misc';
 
 export function IncomeDecorator(eventEndPoint: string) {
 	return (
@@ -11,13 +10,14 @@ export function IncomeDecorator(eventEndPoint: string) {
 	) => {
 		if (descriptor.value) {
 			let events = <Array<{
-				endpoint: String,
-				callback: Function
+				endpoint: string,
+				callback: SocketEventHandler
 			}>>Reflect.getMetadata(INCOME_SOCKET_KEY, target.constructor) || [];
 			if (events.filter(event => event.endpoint === eventEndPoint).length === 0) {
+				let callback = descriptor.value!.bind(target.constructor);
 				events.push({
 					endpoint: eventEndPoint,
-					callback: descriptor.value
+					callback: callback
 				});
 			} else {
 				throw new Error('Endpoint is already in the routes');

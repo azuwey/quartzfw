@@ -1,8 +1,8 @@
-import { APPLICATION_KEY } from '../misc/keys';
+import { APPLICATION_KEY } from '../misc';
 
 export function AppDecorator(
-	target: Object, // The prototype of the class
-	propertyKey: string | symbol // The name of the property
+	target: Object,
+	propertyKey: string | symbol
 ) {
 	let timer = setInterval(() => {
 		let expressApp = <Express.Application>Reflect

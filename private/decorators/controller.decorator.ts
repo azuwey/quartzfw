@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { APPLICATION_KEY, METHODS_KEYS } from '../misc/keys';
+import { APPLICATION_KEY, METHODS_KEYS } from '../misc';
 
 export function ControllerDecorator(baseEndpoint: string = '') {
 	return (constructor: Function) => {
@@ -12,7 +12,7 @@ export function ControllerDecorator(baseEndpoint: string = '') {
 				clearInterval(timer);
 				let events: Array<{
 					method: string,
-					endpoint: String,
+					endpoint: string,
 					callback: Function
 				}> = [];
 				Object.keys(METHODS_KEYS).forEach(key => {

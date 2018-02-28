@@ -1,11 +1,12 @@
-import { GatewayDecorator } from "../../decorators/gateway.decorator";
-import { IncomeDecorator } from "../..";
 import * as Ws from 'ws';
+
+import { GatewayDecorator, IncomeDecorator } from '../..';
 
 @GatewayDecorator()
 export default class IndexGateway {
-	@IncomeDecorator('message')
-	private name(ws: Ws, message: Ws.Data) {
-		console.log('test')
+
+	@IncomeDecorator('test')
+	private name(ws: Ws, message: string) {
+		ws.send((new Date()).getTime());
 	}
 }

@@ -1,7 +1,7 @@
 {
   "name": "quartzfw",
   "displayName": "QuartzFW",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "quartzfw",
   "main": "private/index.ts",
   "repository": "https://github.com/azuwey/quartzfw.git",

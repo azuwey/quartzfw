@@ -9,7 +9,7 @@ export function AddRequest(
 ) {
 	let events = <Array<{
 		method: string
-		endpoint: String,
+		endpoint: string,
 		callback: Function
 	}>>Reflect.getMetadata(key, target) || [];
 	if (events.filter(event => event.endpoint === endpoint).length === 0) {
