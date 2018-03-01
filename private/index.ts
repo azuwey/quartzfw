@@ -21,16 +21,14 @@ import {
 	ServerDecorator
 } from './decorators';
 
-export default {
-	AppDecorator,
-	ControllerDecorator,
-	DeleteDecorator,
-	GatewayDecorator,
-	GetDecorator,
-	IncomeDecorator,
-	ModuleDecorator,
-	ParamDecorator,
-	PostDecorator,
-	PutDecorator,
-	ServerDecorator
-}
+export { AppDecorator as App }
+export { ControllerDecorator as Controller }
+export { DeleteDecorator as Delete }
+export { GatewayDecorator as Gateway }
+export { GetDecorator as Get }
+export { IncomeDecorator as Income }
+export { ModuleDecorator as Module }
+export { ParamDecorator as Param }
+export { PostDecorator as Post }
+export { PutDecorator as Put }
+export { ServerDecorator as Server }
