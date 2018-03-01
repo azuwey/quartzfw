@@ -31,4 +31,4 @@ export { ModuleDecorator as Module }
 export { ParamDecorator as Param }
 export { PostDecorator as Post }
 export { PutDecorator as Put }
-export { ServerDecorator as Server }
+export { ServerDecorator as Serve }

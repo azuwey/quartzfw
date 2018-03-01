@@ -9,17 +9,15 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var decorators_1 = require("./decorators");
-exports.default = {
-    AppDecorator: decorators_1.AppDecorator,
-    ControllerDecorator: decorators_1.ControllerDecorator,
-    DeleteDecorator: decorators_1.DeleteDecorator,
-    GatewayDecorator: decorators_1.GatewayDecorator,
-    GetDecorator: decorators_1.GetDecorator,
-    IncomeDecorator: decorators_1.IncomeDecorator,
-    ModuleDecorator: decorators_1.ModuleDecorator,
-    ParamDecorator: decorators_1.ParamDecorator,
-    PostDecorator: decorators_1.PostDecorator,
-    PutDecorator: decorators_1.PutDecorator,
-    ServerDecorator: decorators_1.ServerDecorator
-};
+exports.App = decorators_1.AppDecorator;
+exports.Controller = decorators_1.ControllerDecorator;
+exports.Delete = decorators_1.DeleteDecorator;
+exports.Gateway = decorators_1.GatewayDecorator;
+exports.Get = decorators_1.GetDecorator;
+exports.Income = decorators_1.IncomeDecorator;
+exports.Module = decorators_1.ModuleDecorator;
+exports.Param = decorators_1.ParamDecorator;
+exports.Post = decorators_1.PostDecorator;
+exports.Put = decorators_1.PutDecorator;
+exports.Serve = decorators_1.ServerDecorator;
 //# sourceMappingURL=index.js.map

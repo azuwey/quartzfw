@@ -7,17 +7,14 @@
  * {@tutorial https://github.com/azuwey/quartzfw/wiki/Getting-started Getting started}
  */
 import { AppDecorator, ControllerDecorator, DeleteDecorator, GatewayDecorator, GetDecorator, IncomeDecorator, ModuleDecorator, ParamDecorator, PostDecorator, PutDecorator, ServerDecorator } from './decorators';
-declare const _default: {
-    AppDecorator: typeof AppDecorator;
-    ControllerDecorator: typeof ControllerDecorator;
-    DeleteDecorator: typeof DeleteDecorator;
-    GatewayDecorator: typeof GatewayDecorator;
-    GetDecorator: typeof GetDecorator;
-    IncomeDecorator: typeof IncomeDecorator;
-    ModuleDecorator: typeof ModuleDecorator;
-    ParamDecorator: typeof ParamDecorator;
-    PostDecorator: typeof PostDecorator;
-    PutDecorator: typeof PutDecorator;
-    ServerDecorator: typeof ServerDecorator;
-};
-export default _default;
+export { AppDecorator as App };
+export { ControllerDecorator as Controller };
+export { DeleteDecorator as Delete };
+export { GatewayDecorator as Gateway };
+export { GetDecorator as Get };
+export { IncomeDecorator as Income };
+export { ModuleDecorator as Module };
+export { ParamDecorator as Param };
+export { PostDecorator as Post };
+export { PutDecorator as Put };
+export { ServerDecorator as Serve };
