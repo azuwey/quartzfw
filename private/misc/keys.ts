@@ -1,3 +1,7 @@
+/**
+ * @author David Zarandi (Azuwey)
+ */
+
 export const APPLICATION_KEY: string = 'applicationkey';
 export const HTTP_KEY: string = 'httpkey';
 export const HTTPS_KEY: string = 'httpskey';

@@ -1,13 +1,22 @@
+/**
+ * @author David Zarandi (Azuwey)
+ */
+
 import 'reflect-metadata';
 
-import { Extended, METHODS_KEYS, Simple } from '../misc';
+import { NextFunction, Request, Response } from 'express';
+
+import { METHODS_KEYS } from '../misc';
 import { AddRequest } from './request.decorator';
 
 export function GetDecorator(endpoint: string = '') {
 	return (
 		target: Object,
 		propertyKey: string,
-		descriptor: Simple | Extended
+		descriptor: TypedPropertyDescriptor<(req: Request,
+			res: Response) => void> | 
+		TypedPropertyDescriptor<(req: Request,
+			res: Response, next: NextFunction) => void>
 	) => {
 		if (descriptor.value) {
 			AddRequest(descriptor.value, target.constructor,

@@ -1,3 +1,7 @@
+/**
+ * @author David Zarandi (Azuwey)
+ */
+
 import * as Http from 'http';
 import * as Https from 'https';
 import * as Ws from 'ws';

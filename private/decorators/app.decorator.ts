@@ -1,3 +1,7 @@
+/**
+ * @author David Zarandi (Azuwey)
+ */
+
 import { APPLICATION_KEY } from '../misc';
 
 export function AppDecorator(

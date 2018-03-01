@@ -1,3 +1,7 @@
+/**
+ * @author David Zarandi (Azuwey)
+ */
+
 import 'reflect-metadata';
 
 import { APPLICATION_KEY, METHODS_KEYS } from '../misc';
@@ -5,7 +9,6 @@ import { APPLICATION_KEY, METHODS_KEYS } from '../misc';
 export function ControllerDecorator(baseEndpoint: string = '') {
 	return (constructor: Function) => {
 		let timer = setInterval(() => {
-			let keys = Reflect.getMetadataKeys(constructor);
 			let expressApp = <Express.Application>Reflect
 				.getMetadata(APPLICATION_KEY, constructor);
 			(expressApp) && (() => {

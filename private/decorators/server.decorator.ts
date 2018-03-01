@@ -1,3 +1,7 @@
+/**
+ * @author David Zarandi (Azuwey)
+ */
+
 import 'reflect-metadata';
 
 import * as Express from 'express';

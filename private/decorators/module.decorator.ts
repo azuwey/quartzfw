@@ -1,11 +1,21 @@
+/**
+ * @author David Zarandi (Azuwey)
+ */
+
 import 'reflect-metadata';
 
 import * as Http from 'http';
 import * as Https from 'https';
 
-import { APPLICATION_KEY, HTTP_KEY, HTTPS_KEY, SOCKET_SERVER_KEY, WsServerEventDispatcher } from '../misc';
+import {
+	APPLICATION_KEY,
+	HTTP_KEY,
+	HTTPS_KEY,
+	SOCKET_SERVER_KEY,
+	WsServerEventDispatcher
+} from '../misc';
 
-type ModuleDecoratorParam = {
+export type ModuleDecoratorParam = {
 	controllers?: Array<Function>,
 	gateways?: Array<Function>
 }

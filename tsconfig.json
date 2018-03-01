@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "declaration": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "lib": [ "es7" ],
@@ -8,18 +9,17 @@
         "moduleResolution": "node",
         "noImplicitAny": false,
         "noImplicitReturns": false,
+        "noUnusedLocals": true,
         "outDir": "public",
-        "removeComments": true,
         "sourceMap": true,
         "strict": true,
         "strictNullChecks": true,
-        "target": "es5",
+        "target": "es5"
     },
     "include": [
         "private/**/*"
     ],
     "exclude": [
-        "node_modules",
         "public"
     ]
 }
