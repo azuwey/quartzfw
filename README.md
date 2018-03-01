@@ -14,6 +14,6 @@ $ npm install quartzfw --save-prod
 ### Issues
 If you have any problem with the framework please open a new issue [here](https://github.com/azuwey/quartzfw/issues/new)
 
-## Further info you can found in [here](https://github.com/azuwey/quartzfw/wiki/Getting-started)
+## Getting started tutorial [here](https://github.com/azuwey/quartzfw/wiki/Getting-started)
 
-## You can found an example project [here](https://github.com/azuwey/quartzfw-example) 
+## You can find an example project [here](https://github.com/azuwey/quartzfw-example)
