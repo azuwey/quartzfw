@@ -1,7 +1,7 @@
 {
   "name": "quartzfw",
   "displayName": "QuartzFW",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "QuartzFW is Typescript decorator based, lightweight nodejs micro framework, with Express and native WebSocket, which you can use to develop REST API / real time backend easily.",
   "main": "dist/index.js",
   "types" : "declarations/index.d.ts",
@@ -13,6 +13,7 @@
     "typescript",
     "framework",
     "websocket",
+    "annotation",
     "web",
     "socket",
     "express",

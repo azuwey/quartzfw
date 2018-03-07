@@ -2,8 +2,6 @@
  * @author David Zarandi (Azuwey)
  */
 
-import 'reflect-metadata';
-
 import {
 	APPLICATION_KEY,
 	INCOME_SOCKET_KEY,
@@ -26,7 +24,7 @@ export function GatewayDecorator(baseEndpoint: string = '') {
 					callback: SocketEventHandler
 				}>>Reflect.getMetadata(INCOME_SOCKET_KEY, constructor);
 				let _class = new (<any>constructor);
-				events.forEach(event => wssed.Add(event.endpoint, event.callback.bind(_class)));
+				events.forEach(event => wssed.add(event.endpoint, event.callback.bind(_class)));
 			})();
 		}, 0);
 	}

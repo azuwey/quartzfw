@@ -2,8 +2,6 @@
  * @author David Zarandi (Azuwey)
  */
 
-import 'reflect-metadata';
-
 import { Income, INCOME_SOCKET_KEY, SocketEventHandler } from '../misc';
 
 export function IncomeDecorator(eventEndPoint: string) {

@@ -2,8 +2,6 @@
  * @author David Zarandi (Azuwey)
  */
 
-import 'reflect-metadata';
-
 export function AddRequest(
 	callback: Function,
 	target: Function,

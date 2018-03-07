@@ -2,8 +2,6 @@
  * @author David Zarandi (Azuwey)
  */
 
-import 'reflect-metadata';
-
 import * as Http from 'http';
 import * as Https from 'https';
 
@@ -31,8 +29,8 @@ export function ModuleDecorator(config: ModuleDecoratorParam) {
 				let https: Https.Server = Reflect.getMetadata(HTTPS_KEY, constructor);
 				SOCKET_SERVER_KEY
 				let wssed: WsServerEventDispatcher = https
-					? WsServerEventDispatcher.GetInstance(https)
-					: WsServerEventDispatcher.GetInstance(http);
+					? WsServerEventDispatcher.getInstance(https)
+					: WsServerEventDispatcher.getInstance(http);
 				config.gateways.forEach((target) => {
 					Reflect.defineMetadata(SOCKET_SERVER_KEY, wssed, target);
 					Reflect.defineMetadata(APPLICATION_KEY, metaData, target);

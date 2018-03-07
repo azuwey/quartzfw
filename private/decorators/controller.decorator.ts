@@ -2,8 +2,6 @@
  * @author David Zarandi (Azuwey)
  */
 
-import 'reflect-metadata';
-
 import { APPLICATION_KEY, METHODS_KEYS } from '../misc';
 
 export function ControllerDecorator(baseEndpoint: string = '') {

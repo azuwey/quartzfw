@@ -46,7 +46,7 @@ export class WsServerEventDispatcher {
 		});
 	}
 
-	public Add(
+	public add(
 		eventName: string,
 		eventCallback: SocketEventHandler,
 	): void {
@@ -57,7 +57,7 @@ export class WsServerEventDispatcher {
 		}
 	}
 
-	public static GetInstance(
+	public static getInstance(
 		server?: Http.Server | Https.Server
 	): WsServerEventDispatcher {
 		if (WsServerEventDispatcher._instance) {

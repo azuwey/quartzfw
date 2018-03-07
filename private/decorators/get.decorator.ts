@@ -2,8 +2,6 @@
  * @author David Zarandi (Azuwey)
  */
 
-import 'reflect-metadata';
-
 import { NextFunction, Request, Response } from 'express';
 
 import { METHODS_KEYS } from '../misc';
