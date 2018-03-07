@@ -11,6 +11,6 @@ export declare class WsServerEventDispatcher {
     private _events;
     private constructor();
     private _Dispatch();
-    Add(eventName: string, eventCallback: SocketEventHandler): void;
-    static GetInstance(server?: Http.Server | Https.Server): WsServerEventDispatcher;
+    add(eventName: string, eventCallback: SocketEventHandler): void;
+    static getInstance(server?: Http.Server | Https.Server): WsServerEventDispatcher;
 }

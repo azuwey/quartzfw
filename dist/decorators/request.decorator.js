@@ -3,7 +3,6 @@
  * @author David Zarandi (Azuwey)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
 function AddRequest(callback, target, key, method, endpoint) {
     var events = Reflect.getMetadata(key, target) || [];
     if (events.filter(function (event) { return event.endpoint === endpoint; }).length === 0) {

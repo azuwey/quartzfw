@@ -6,15 +6,4 @@
  * {@link https://github.com/azuwey/quartzfw-example GitHub example repository}
  * {@tutorial https://github.com/azuwey/quartzfw/wiki/Getting-started Getting started}
  */
-import { AppDecorator, ControllerDecorator, DeleteDecorator, GatewayDecorator, GetDecorator, IncomeDecorator, ModuleDecorator, ParamDecorator, PostDecorator, PutDecorator, ServerDecorator } from './decorators';
-export { AppDecorator as App };
-export { ControllerDecorator as Controller };
-export { DeleteDecorator as Delete };
-export { GatewayDecorator as Gateway };
-export { GetDecorator as Get };
-export { IncomeDecorator as Income };
-export { ModuleDecorator as Module };
-export { ParamDecorator as Param };
-export { PostDecorator as Post };
-export { PutDecorator as Put };
-export { ServerDecorator as Serve };
+export { AppDecorator as App, ControllerDecorator as Controller, DeleteDecorator as Delete, GatewayDecorator as Gateway, GetDecorator as Get, IncomeDecorator as Income, ModuleDecorator as Module, ParamDecorator as Param, PostDecorator as Post, PutDecorator as Put, ServerDecorator as Serve } from './decorators';

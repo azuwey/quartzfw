@@ -3,7 +3,6 @@
  * @author David Zarandi (Azuwey)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
 var misc_1 = require("../misc");
 function IncomeDecorator(eventEndPoint) {
     return function (target, propertyKey, descriptor) {

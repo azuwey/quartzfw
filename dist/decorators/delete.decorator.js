@@ -3,7 +3,6 @@
  * @author David Zarandi (Azuwey)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
 var misc_1 = require("../misc");
 var request_decorator_1 = require("./request.decorator");
 function DeleteDecorator(endpoint) {

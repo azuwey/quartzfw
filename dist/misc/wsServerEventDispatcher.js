@@ -39,7 +39,7 @@ var WsServerEventDispatcher = /** @class */ (function () {
             });
         });
     };
-    WsServerEventDispatcher.prototype.Add = function (eventName, eventCallback) {
+    WsServerEventDispatcher.prototype.add = function (eventName, eventCallback) {
         if (!this._events.has(eventName)) {
             this._events.set(eventName, eventCallback);
         }
@@ -47,7 +47,7 @@ var WsServerEventDispatcher = /** @class */ (function () {
             throw new Error('This event name already used in the event handler list');
         }
     };
-    WsServerEventDispatcher.GetInstance = function (server) {
+    WsServerEventDispatcher.getInstance = function (server) {
         if (WsServerEventDispatcher._instance) {
             return WsServerEventDispatcher._instance;
         }

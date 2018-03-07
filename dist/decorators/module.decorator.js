@@ -3,7 +3,6 @@
  * @author David Zarandi (Azuwey)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
 var misc_1 = require("../misc");
 function ModuleDecorator(config) {
     return function (constructor) {
@@ -17,8 +16,8 @@ function ModuleDecorator(config) {
                 var https = Reflect.getMetadata(misc_1.HTTPS_KEY, constructor);
                 misc_1.SOCKET_SERVER_KEY;
                 var wssed = https
-                    ? misc_1.WsServerEventDispatcher.GetInstance(https)
-                    : misc_1.WsServerEventDispatcher.GetInstance(http);
+                    ? misc_1.WsServerEventDispatcher.getInstance(https)
+                    : misc_1.WsServerEventDispatcher.getInstance(http);
                 config.gateways.forEach(function (target) {
                     Reflect.defineMetadata(misc_1.SOCKET_SERVER_KEY, wssed, target);
                     Reflect.defineMetadata(misc_1.APPLICATION_KEY, metaData, target);
